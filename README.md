@@ -42,8 +42,9 @@ flutter build ios --release #for iOS
 
 ## Screenshot
 
-![Screenshot_20231227-224045](https://github.com/adityadelhi/reminder_application/assets/54105876/d0e4c2e0-ed88-4e4d-85c3-3ed29117e46a)
-![Screenshot_20231227-224116](https://github.com/adityadelhi/reminder_application/assets/54105876/ef45e39f-997e-492b-be57-7aa090d16a05)
+<img src="https://github.com/adityadelhi/reminder_application/assets/54105876/d0e4c2e0-ed88-4e4d-85c3-3ed29117e46a" width="300" height="600">
+
+<img src="https://github.com/adityadelhi/reminder_application/assets/54105876/ef45e39f-997e-492b-be57-7aa090d16a05" width="300" height="600">
 
 ## Contributing
 
