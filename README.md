@@ -40,6 +40,11 @@ flutter build ios --release #for iOS
 - Notifications are triggered when the reminder time is reached
 - Reminders are automatically deleted when their end time is reached
 
+## Screenshot
+
+![Screenshot_20231227-224045](https://github.com/adityadelhi/reminder_application/assets/54105876/d0e4c2e0-ed88-4e4d-85c3-3ed29117e46a)
+![Screenshot_20231227-224116](https://github.com/adityadelhi/reminder_application/assets/54105876/ef45e39f-997e-492b-be57-7aa090d16a05)
+
 ## Contributing
 
 If you want to contribute to this project, you can follow these steps:
