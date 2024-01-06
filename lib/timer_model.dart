@@ -1,28 +1,40 @@
 class TimerModel {
-  final int _minutes;
-  DateTime _startTime;
-  DateTime _endTime;
-  bool _notificationSent;  // Add this field
+  final int minutes;
+  final DateTime startTime;
+  final DateTime endTime;
+  bool notificationSent;
 
-  TimerModel(this._minutes, this._startTime, this._endTime)
-      : _notificationSent = false;
+  TimerModel(this.minutes, this.startTime, this.endTime)
+      : notificationSent = false;
 
   bool isActive() {
     DateTime now = DateTime.now();
-    return now.isAfter(_startTime) && now.isBefore(_endTime);
+    return now.isAfter(startTime) && now.isBefore(endTime);
   }
 
   bool isExpired() {
-    return DateTime.now().isAfter(_endTime);
+    return DateTime.now().isAfter(endTime);
   }
 
-  bool get notificationSent => _notificationSent;  // Add this getter
+  TimerModel copyWith({bool? notificationSent}) {
+    return TimerModel(
+      minutes,
+      startTime,
+      endTime,
+    )..notificationSent = notificationSent ?? this.notificationSent;
+  }
 
-  set notificationSent(bool value) {
-    _notificationSent = value;
-  }  // Add this setter
-
-  int get minutes => _minutes;
-  DateTime get startTime => _startTime;
-  DateTime get endTime => _endTime;
+  factory TimerModel.fromJson(Map<String, dynamic> json) {
+    try {
+      return TimerModel(
+        json['minutes'] ?? 0,
+        DateTime.parse(json['startTime'] ?? ''),
+        DateTime.parse(json['endTime'] ?? ''),
+      )..notificationSent = json['notificationSent'] ?? false;
+    } catch (e) {
+      // Handle deserialization errors
+      print('Error deserializing TimerModel: $e');
+      return TimerModel(0, DateTime.now(), DateTime.now());
+    }
+  }
 }

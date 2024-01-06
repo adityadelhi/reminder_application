@@ -39,6 +39,7 @@ flutter build ios --release #for iOS
 - Set reminders at specific intervals (e.g., every 1 minute, 5 minutes, etc.)
 - Notifications are triggered when the reminder time is reached
 - Reminders are automatically deleted when their end time is reached
+- Reminders can be deleted by swiping on the reminder or clicking on the delete button.
 
 ## Screenshot
 
