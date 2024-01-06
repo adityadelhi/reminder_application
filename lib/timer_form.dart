@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
 class TimerForm extends StatefulWidget {
-  final Function(int, DateTime, DateTime) onSubmit; // Modify this line
+  final Function(int, DateTime, DateTime) onSubmit;
 
   TimerForm({required this.onSubmit});
 
@@ -12,33 +12,66 @@ class TimerForm extends StatefulWidget {
 
 class _TimerFormState extends State<TimerForm> {
   TimeOfDay _selectedStartTime = TimeOfDay.now();
+  DateTime _selectedDate = DateTime.now();
   TimeOfDay _selectedEndTime = TimeOfDay.now();
   final _formKey = GlobalKey<FormState>();
   final _minutesController = TextEditingController();
-  DateTime _selectedDate = DateTime.now(); // Define _selectedDate
+  final _dateController = TextEditingController(text: DateFormat('dd-MM-yyyy').format(DateTime.now()));
 
   void _submit() {
-  if (_formKey.currentState!.validate()) {
-    DateTime startTime = DateTime(
-      _selectedDate.year,
-      _selectedDate.month,
-      _selectedDate.day,
-      _selectedStartTime.hour,
-      _selectedStartTime.minute,
-    );
-    DateTime endTime = DateTime(
-      _selectedDate.year,
-      _selectedDate.month,
-      _selectedDate.day,
-      _selectedEndTime.hour,
-      _selectedEndTime.minute,
-    );
+    if (_formKey.currentState!.validate()) {
+      DateTime startTime = DateTime(
+        _selectedDate.year,
+        _selectedDate.month,
+        _selectedDate.day,
+        _selectedStartTime.hour,
+        _selectedStartTime.minute,
+      );
+      DateTime endTime = DateTime(
+        _selectedDate.year,
+        _selectedDate.month,
+        _selectedDate.day,
+        _selectedEndTime.hour,
+        _selectedEndTime.minute,
+      );
 
-    widget.onSubmit(int.parse(_minutesController.text), startTime, endTime);
-    Navigator.of(context).pop();
+      widget.onSubmit(int.parse(_minutesController.text), startTime, endTime);
+      Navigator.of(context).pop();
+    }
   }
-}
 
+  void _selectDate() async {
+    DateTime? pickedDate = await showDatePicker(
+      context: context,
+      initialDate: _selectedDate,
+      firstDate: DateTime.now(),
+      lastDate: DateTime(2101),
+    );
+
+    if (pickedDate != null && pickedDate != _selectedDate) {
+      setState(() {
+        _selectedDate = pickedDate;
+        _dateController.text = DateFormat('dd-MM-yyyy').format(_selectedDate);
+      });
+    }
+  }
+
+  void _selectTime(bool isStartTime) async {
+    TimeOfDay? pickedTime = await showTimePicker(
+      context: context,
+      initialTime: isStartTime ? _selectedStartTime : _selectedEndTime,
+    );
+
+    if (pickedTime != null && (isStartTime ? pickedTime != _selectedStartTime : pickedTime != _selectedEndTime)) {
+      setState(() {
+        if (isStartTime) {
+          _selectedStartTime = pickedTime;
+        } else {
+          _selectedEndTime = pickedTime;
+        }
+      });
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -61,65 +94,24 @@ class _TimerFormState extends State<TimerForm> {
                 },
               ),
               const SizedBox(height: 15.0),
-              // Display selected date
-              Text('Selected Date: ${DateFormat('dd-MM-yyyy').format(_selectedDate)}'),
+              TextFormField(
+                controller: _dateController,
+                enabled: false,
+                decoration: const InputDecoration(labelText: 'Date'),
+              ),
               const SizedBox(height: 15.0),
-              // Date picker
               ElevatedButton(
-                onPressed: () async {
-                  DateTime? pickedDate = await showDatePicker(
-                    context: context,
-                    initialDate: _selectedDate,
-                    firstDate: DateTime.now(),
-                    lastDate: DateTime(2101),
-                  );
-          
-                  if (pickedDate != null && pickedDate != _selectedDate) {
-                    setState(() {
-                      _selectedDate = pickedDate;
-                    });
-                  }
-                },
+                onPressed: _selectDate,
                 child: const Text('Select Date'),
               ),
               const SizedBox(height: 15.0),
-              // Display selected start time
-              Text('Selected Start Time: ${_selectedStartTime.format(context)}'),
-              const SizedBox(height: 15.0),
-              // Start time picker
               ElevatedButton(
-                onPressed: () async {
-                  TimeOfDay? pickedTime = await showTimePicker(
-                    context: context,
-                    initialTime: _selectedStartTime,
-                  );
-          
-                  if (pickedTime != null && pickedTime != _selectedStartTime) {
-                    setState(() {
-                      _selectedStartTime = pickedTime;
-                    });
-                  }
-                },
+                onPressed: () => _selectTime(true),
                 child: const Text('Select Start Time'),
               ),
               const SizedBox(height: 15.0),
-              // Display selected end time
-              Text('Selected End Time: ${_selectedEndTime.format(context)}'),
-              const SizedBox(height: 15.0),
-              // End time picker
               ElevatedButton(
-                onPressed: () async {
-                  TimeOfDay? pickedTime = await showTimePicker(
-                    context: context,
-                    initialTime: _selectedEndTime,
-                  );
-          
-                  if (pickedTime != null && pickedTime != _selectedEndTime) {
-                    setState(() {
-                      _selectedEndTime = pickedTime;
-                    });
-                  }
-                },
+                onPressed: () => _selectTime(false),
                 child: const Text('Select End Time'),
               ),
               const SizedBox(height: 15.0),
