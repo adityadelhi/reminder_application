@@ -62,7 +62,7 @@ class _TimerListState extends State<TimerList> {
                 onDismissed: (direction) {
                   _deleteTimer(index);
                   ScaffoldMessenger.of(context).showSnackBar(
-                    SnackBar(content: Text('Timer deleted')),
+                    const SnackBar(content: Text('Timer deleted')),
                   );
                 },
                 background: Container(color: Colors.red),
