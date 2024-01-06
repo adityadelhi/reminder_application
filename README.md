@@ -43,13 +43,11 @@ flutter build ios --release #for iOS
 
 ## Screenshot
 
-<img src="![Screenshot_2024-01-06-19-44-31-42_c9da41f7ba646f3f6b9e128f7444e27b](https://github.com/adityadelhi/reminder_application/assets/54105876/fe12d4a3-1964-4a0d-b647-061cdd924a96)
-" width="300" height="600">
+<img src="https://github.com/adityadelhi/reminder_application/assets/54105876/fe12d4a3-1964-4a0d-b647-061cdd924a96" width="300" height="600">
 
-<img src=![Screenshot_2024-01-06-20-47-39-17_c9da41f7ba646f3f6b9e128f7444e27b](https://github.com/adityadelhi/reminder_application/assets/54105876/ca8f7e7e-08da-43b9-a3e5-ea0bdf963563)
-"" width="300" height="600">
+<img src="https://github.com/adityadelhi/reminder_application/assets/54105876/ca8f7e7e-08da-43b9-a3e5-ea0bdf963563" width="300" height="600">
 
-<img src="![Screenshot_2024-01-06-20-47-41-83_c9da41f7ba646f3f6b9e128f7444e27b](https://github.com/adityadelhi/reminder_application/assets/54105876/a42c3a74-bf1d-4475-9f7f-044473d8b5f7)" width="300" height="600">
+<img src="https://github.com/adityadelhi/reminder_application/assets/54105876/a42c3a74-bf1d-4475-9f7f-044473d8b5f7" width="300" height="600">
 
 ## Contributing
 
