@@ -12,7 +12,7 @@ void main() {
 class MyApp extends StatelessWidget {
   final TimerManager timerManager;
 
-  MyApp({required this.timerManager});
+  const MyApp({super.key, required this.timerManager});
 
   @override
   Widget build(BuildContext context) {

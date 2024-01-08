@@ -25,7 +25,7 @@ class TimerManager {
     try {
       const AndroidInitializationSettings initializationSettingsAndroid =
           AndroidInitializationSettings('@mipmap/ic_launcher');
-      final InitializationSettings initializationSettings =
+      const InitializationSettings initializationSettings =
           InitializationSettings(android: initializationSettingsAndroid, iOS: null);
 
       await _flutterLocalNotificationsPlugin.initialize(initializationSettings);
@@ -56,7 +56,7 @@ class TimerManager {
   }
 
   void _startTimers() {
-    Timer.periodic(Duration(seconds: 1), (timer) {
+    Timer.periodic(const Duration(seconds: 1), (timer) {
       for (int i = 0; i < _timers.length; i++) {
         final TimerModel timerModel = _timers[i];
         final DateTime now = DateTime.now();

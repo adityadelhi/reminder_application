@@ -4,7 +4,7 @@ import 'package:intl/intl.dart';
 class TimerForm extends StatefulWidget {
   final Function(int, DateTime, DateTime) onSubmit;
 
-  TimerForm({required this.onSubmit});
+  const TimerForm({super.key, required this.onSubmit});
 
   @override
   _TimerFormState createState() => _TimerFormState();
@@ -82,6 +82,13 @@ class _TimerFormState extends State<TimerForm> {
         child: SingleChildScrollView(
           child: Column(
             children: <Widget>[
+              Text(
+                '@Author: Aditya Patel',
+                style: TextStyle(
+                  fontSize: 16.0,
+                  color: Colors.grey[600],
+                ),
+              ),
               TextFormField(
                 controller: _minutesController,
                 decoration: const InputDecoration(labelText: 'Minutes'),

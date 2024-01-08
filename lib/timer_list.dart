@@ -15,7 +15,7 @@ class TimerList extends StatefulWidget {
 class _TimerListState extends State<TimerList> {
   final TimerManager _timerManager = TimerManager();
   final TextEditingController _minutesController = TextEditingController();
-  TimeOfDay _selectedStartTime = TimeOfDay.now();
+  final TimeOfDay _selectedStartTime = TimeOfDay.now();
 
   void _addTimer(int minutes, DateTime startTime, DateTime endTime) {
     _timerManager.addTimer(minutes, startTime, endTime);
